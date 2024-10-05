@@ -1,0 +1,43 @@
+<section class="py-4 main-section" *ngIf="products.length > 0">
+  <h2 class="fw-bold mx-auto fs-1 text-center header position-relative d-flex justify-content-center align-items-end ">All product</h2>
+ <div class="row justify-content-center g-4 mt-3">
+  <div *ngFor="let product of products | paginate: { id: 'prodectPag',
+  itemsPerPage: pageSize,
+  currentPage: currentPage,
+  totalItems: total }"
+  class="col-sm-6 col-md-4 col-lg-3 col-xl-2">
+    <div class="prodect h-100">
+      <header role="button" [routerLink]="['/productdetailes',product._id]">
+        <img class="w-100" [src]="product.imageCover" [title]="product.title"  [alt]="product.title">
+        <h3 class="small">{{product.title |cuttext:3}}</h3>
+        <h4 class="small text-main">{{product.category.name}}</h4>
+        <div class="d-flex align-items-center justify-content-between">
+          <span>{{product.price |currency:'E€'}}</span>
+          <span class="text-muted small mb-0">
+            <i class="fas fa-star rating-color"></i>
+            {{product.ratingsAverage}}
+          </span>
+        </div>
+      </header>
+      <footer  class="d-flex align-items-center justify-content-center">
+        <button  #btnAdd (click)="addProduct(product._id,btnAdd)" class="main-btn text-center w-100 py-2">+Add To Cart</button>
+      </footer>
+    </div>
+  </div>
+ </div>
+<div class="d-flex justify-content-center mt-5">
+  <pagination-controls  id="prodectPag"
+  (pageChange)="pageChanged($event)"
+  (pageBoundsCorrection)="pageChanged($event)"
+  [maxSize]="9"
+  [directionLinks]="true"
+  [autoHide]="true"
+  [responsive]="true"
+  previousLabel="Previous"
+  nextLabel="Next"
+  screenReaderPaginationLabel="Pagination"
+  screenReaderPageLabel="page"
+  screenReaderCurrentLabel="You're on page">
+</pagination-controls>
+</div>
+</section>

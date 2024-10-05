@@ -1,0 +1,36 @@
+<section class="bg-main-light p-4 rounded my-3 w-75 mx-auto shadow main-section">
+  <h1 class="fw-bold mx-auto fs-1 text-center header position-relative d-flex justify-content-center align-items-end">Login Now</h1>
+  <form [formGroup]="loginForm" (ngSubmit)="handelForm()">
+    <div class="mb-2">
+      <label for="email">Email :</label>
+      <input formControlName="email" type="email" id="email" class="form-control">
+      <div class="alert alert-danger  mt-2" *ngIf="loginForm.get('email')?.errors && loginForm.get('email')?.touched">
+        <p class="mb-0 text-center" *ngIf="loginForm.get('email')?.getError('required')">email is Requrid</p>
+        <p class="mb-0 text-center" *ngIf="loginForm.get('email')?.getError('email')">email is valid</p>
+      </div>
+    </div>
+    <div class="mb-2">
+      <label for="password">Password :</label>
+      <input formControlName="password" type="password" id="password" class="form-control">
+      <div class="alert alert-danger  mt-2" *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched">
+        <p class="mb-0 text-center" *ngIf="loginForm.get('password')?.getError('required')">password is Requrid</p>
+        <p class="mb-0 text-center" *ngIf="loginForm.get('password')?.getError('pattern')">must be
+        <span class="d-block text-center"> * Start with a letter (either uppercase or lowercase).</span>
+        <span  class="d-block text-center"> * Be between 6 and 9 characters in total.</span>
+         <span  class="d-block text-center"> * Can only contain letters (A-Z or a-z)</span>
+        </p>
+      </div>
+    </div>
+   <div class="d-flex justify-content-between  align-items-center">
+    <button [disabled]="loginForm.invalid"  class="main-btn mt-2"> Login
+      <span *ngIf="isLoding"><i class="fas fa-spin fa-spinner"></i></span>
+     </button>
+     <a routerLink="/forgot" >Forgot Password</a>
+   </div>
+  </form>
+  <p *ngIf="errMsg" class="alert alert-danger text-center p-1  mx-auto mb-0 mt-3">
+   {{errMsg}}
+  </p>
+</section>
+
+

@@ -1,0 +1,19 @@
+<section class="w-75 mx-auto rounded shadow p-3 bg-main-light mb-3">
+  <h1>Chick Out </h1>
+  <form [formGroup]="orderForm" (ngSubmit)="handelForm()">
+  <div class="form-item">
+      <label for="detailes">Detailes</label>
+      <input class="form-control" type="text" id="detailes" formControlName="detailes" >
+  </div>
+  <div class="form-item">
+    <label for="phone">Phone</label>
+    <input class="form-control" type="tel" id="phone" formControlName="phone" >
+  </div>
+  <div class="form-item">
+    <label for="city">City</label>
+    <input class="form-control" type="tel" id="city" formControlName="city" >
+  </div>
+  <button class="main-btn mt-3">Chick Out</button>
+
+  </form>
+</section>
